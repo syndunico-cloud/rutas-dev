@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4to Bimestre 2026 · Julio – Agosto</title>
+<style>
+:root{
+  --azul:#0ea5e9;
+  --azul-fuerte:#0369a1;
+  --azul-suave:#e0f2fe;
+  --rojo:#ef4444;
+  --rojo-suave:#fee2e2;
+  --ambar:#f59e0b;
+  --ambar-suave:#fef3c7;
+  --verde:#10b981;
+  --verde-suave:#d1fae5;
+  --tinta:#0f172a;
+  --gris:#64748b;
+  --gris-claro:#94a3b8;
+  --linea:#e2e8f0;
+  --fondo:#f1f5f9;
+  --panel:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--fondo);
+  color:var(--tinta);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- ENCABEZADO ---------- */
+.barra{
+  background:linear-gradient(100deg,#075985 0%,#0284c7 55%,#0ea5e9 100%);
+  color:#fff;
+  padding:22px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+}
+.barra h1{font-size:21px;font-weight:600;letter-spacing:-.2px}
+.barra .sub{font-size:12px;opacity:.85;margin-top:3px}
+.barra-meta{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.meta-item{text-align:right}
+.meta-item .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.8px;opacity:.75}
+.meta-item .val{font-size:14px;font-weight:600;margin-top:2px}
+.estado-chip{
+  background:var(--rojo);
+  border:1px solid rgba(255,255,255,.45);
+  padding:8px 16px;border-radius:999px;
+  font-size:12px;font-weight:700;letter-spacing:.5px;
+  display:flex;align-items:center;gap:8px;
+  box-shadow:0 2px 8px rgba(185,28,28,.45);
+}
+.punto{width:9px;height:9px;border-radius:50%;background:#fff;
+  box-shadow:0 0 0 0 rgba(255,255,255,.7);animation:pulso 2s infinite}
+@keyframes pulso{
+  0%{box-shadow:0 0 0 0 rgba(255,255,255,.6)}
+  70%{box-shadow:0 0 0 10px rgba(255,255,255,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}
+}
+
+.lienzo{max-width:1500px;margin:0 auto;padding:26px 40px 50px}
+
+/* ---------- MENSAJE EJECUTIVO ---------- */
+.titular{
+  background:var(--panel);
+  border-left:5px solid var(--rojo);
+  border-radius:10px;
+  padding:22px 26px;
+  margin-bottom:24px;
+  box-shadow:0 1px 3px rgba(15,23,42,.06);
+  display:flex;gap:24px;align-items:center;flex-wrap:wrap;
+}
+.titular-texto{flex:1;min-width:280px}
+.titular-etq{
+  font-size:10px;font-weight:700;letter-spacing:1.2px;
+  color:var(--rojo);text-transform:uppercase;margin-bottom:8px;
+}
+.titular h2{font-size:18px;font-weight:600;line-height:1.45;letter-spacing:-.2px}
+.titular h2 b{color:var(--rojo)}
+.titular-cifra{
+  text-align:center;padding-left:24px;border-left:1px solid var(--linea);min-width:150px;
+}
+.titular-cifra .n{font-size:38px;font-weight:700;color:var(--rojo);line-height:1}
+.titular-cifra .t{font-size:11px;color:var(--gris);margin-top:6px}
+
+/* ---------- REJILLA ---------- */
+.fila{display:grid;gap:18px;margin-bottom:24px}
+.f-4{grid-template-columns:repeat(4,1fr)}
+.f-2-1{grid-template-columns:2fr 1fr}
+
+.panel{
+  background:var(--panel);
+  border-radius:10px;
+  padding:22px 24px;
+  box-shadow:0 1px 3px rgba(15,23,42,.06);
+  border:1px solid var(--linea);
+}
+.panel-tit{
+  font-size:11px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;
+  color:var(--gris);margin-bottom:4px;
+}
+.panel-sub{font-size:11px;color:var(--gris-claro);margin-bottom:16px}
+
+/* ---------- TARJETA KPI ---------- */
+.kpi .cifra{font-size:34px;font-weight:700;letter-spacing:-1px;line-height:1;margin:10px 0 6px}
+.kpi .pie{font-size:12px;color:var(--gris)}
+.c-azul{color:var(--azul-fuerte)}
+.c-rojo{color:var(--rojo)}
+.c-ambar{color:var(--ambar)}
+
+.delta{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px;margin-top:12px;
+}
+.d-mal{background:var(--rojo-suave);color:#b91c1c}
+.d-alerta{background:var(--ambar-suave);color:#b45309}
+.d-bien{background:var(--verde-suave);color:#047857}
+
+/* ---------- BARRA DE PROPORCIÓN ---------- */
+.prop{display:flex;height:34px;border-radius:7px;overflow:hidden;margin:14px 0 10px}
+.prop div{display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:11px;font-weight:700}
+.prop-leyenda{display:flex;justify-content:space-between;font-size:11px;color:var(--gris)}
+.prop-leyenda span{display:flex;align-items:center;gap:6px}
+.cuadro{width:9px;height:9px;border-radius:2px}
+
+/* ---------- CADENA / EMBUDO ---------- */
+.cadena{display:flex;flex-direction:column;gap:14px;margin-top:18px}
+.paso{display:flex;align-items:center;gap:16px}
+.paso-nom{width:190px;flex-shrink:0}
+.paso-nom .n1{font-size:13px;font-weight:600}
+.paso-nom .n2{font-size:11px;color:var(--gris-claro);margin-top:2px}
+.paso-barra{flex:1;height:40px;background:#f1f5f9;border-radius:7px;overflow:hidden;position:relative}
+.paso-relleno{height:100%;border-radius:7px;display:flex;align-items:center;padding-left:14px;
+  color:#fff;font-size:15px;font-weight:700;min-width:70px;transition:width .6s ease}
+.paso-pct{width:96px;text-align:right;flex-shrink:0}
+.paso-pct .p1{font-size:17px;font-weight:700}
+.paso-pct .p2{font-size:10px;color:var(--gris-claro)}
+.merma{
+  display:flex;align-items:center;gap:8px;
+  margin-left:206px;font-size:11px;color:var(--rojo);font-weight:600;
+  padding:3px 0;
+}
+
+/* ---------- NOTA AL PIE DEL PANEL ---------- */
+.nota{font-size:11px;color:var(--gris);line-height:1.55;margin-top:10px;
+  padding-top:12px;border-top:1px dashed var(--linea)}
+
+.pie-pagina{
+  text-align:center;font-size:11px;color:var(--gris-claro);
+  margin-top:34px;padding-top:18px;border-top:1px solid var(--linea);
+}
+
+
+@media (max-width:1180px){
+  .f-4,.f-2-1{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .barra{padding:18px 20px}
+  .lienzo{padding:20px}
+  .f-4,.f-2-1{grid-template-columns:1fr}
+  .paso-nom{width:120px}
+  .merma{margin-left:136px}
+  .titular-cifra{border-left:none;padding-left:0;border-top:1px solid var(--linea);padding-top:16px;text-align:left}
+}
+</style>
+</head>
+<body>
+
+<div class="barra">
+  <div>
+    <h1>4to Bimestre 2026 · Julio – Agosto</h1>
+    <div class="sub">Organismo Operador de Agua · 10 zonas · 272 rutas</div>
+  </div>
+  <div class="barra-meta">
+    <div class="meta-item">
+      <div class="lbl">Corte</div>
+      <div class="val">28 / Ago / 2026</div>
+    </div>
+    <div class="meta-item">
+      <div class="lbl">Periodo facturado</div>
+      <div class="val">01 – 28 Ago 2026</div>
+    </div>
+    <div class="estado-chip"><span class="punto"></span> ESTADO CRÍTICO</div>
+  </div>
+</div>
+
+<div class="lienzo">
+
+  <!-- ============ MENSAJE EJECUTIVO ============ -->
+  <div class="titular">
+    <div class="titular-texto">
+      <div class="titular-etq">■ Situación del periodo</div>
+      <h2>
+        De <b>85,300</b> cuentas del padrón, solo <b>1,600</b> generaron aviso de pago este mes.
+        La cadena se rompe en dos puntos: <b>64,000 cuentas sin lectura</b> y
+        <b>19,700 lecturas que sí se tomaron pero no se han facturado</b>.
+      </h2>
+    </div>
+    <div class="titular-cifra">
+      <div class="n">98.1%</div>
+      <div class="t">del padrón sin<br>aviso de pago</div>
+    </div>
+  </div>
+
+  <!-- ============ KPIs PRINCIPALES ============ -->
+  <div class="fila f-4">
+
+    <div class="panel kpi">
+      <div class="panel-tit">Padrón activo</div>
+      <div class="cifra c-azul">85,300</div>
+      <div class="pie">Cuentas en 272 rutas</div>
+      <div class="delta d-bien">● Universo de referencia</div>
+    </div>
+
+    <div class="panel kpi">
+      <div class="panel-tit">Lecturas faltantes</div>
+      <div class="cifra c-rojo">64,000</div>
+      <div class="pie">75.0% del padrón sin lectura</div>
+      <div class="delta d-mal">▼ 70 pts bajo la meta (95%)</div>
+    </div>
+
+    <div class="panel kpi">
+      <div class="panel-tit">Avisos impresos</div>
+      <div class="cifra c-rojo">1,600</div>
+      <div class="pie">1.9% del padrón · 57 por día</div>
+      <div class="delta d-mal">▼ 96 pts bajo la meta (98%)</div>
+    </div>
+
+    <div class="panel kpi">
+      <div class="panel-tit">Lecturas sin facturar</div>
+      <div class="cifra c-ambar">19,700</div>
+      <div class="pie">Se leyeron pero no generaron aviso</div>
+      <div class="delta d-alerta">▲ Recuperable de inmediato</div>
+    </div>
+
+  </div>
+
+  <!-- ============ CADENA DE VALOR ============ -->
+  <div class="fila f-2-1">
+
+    <div class="panel">
+      <div class="panel-tit">Dónde se rompe la cadena</div>
+      <div class="panel-sub">Toma de lectura → Carga al sistema → Impresión del aviso</div>
+
+      <div class="cadena">
+
+        <div class="paso">
+          <div class="paso-nom">
+            <div class="n1">Padrón activo</div>
+            <div class="n2">Cuentas por atender</div>
+          </div>
+          <div class="paso-barra">
+            <div class="paso-relleno" style="width:100%;background:linear-gradient(90deg,#0369a1,#0ea5e9)">85,300</div>
+          </div>
+          <div class="paso-pct"><div class="p1">100%</div><div class="p2">base</div></div>
+        </div>
+
+        <div class="merma">↓ &nbsp;–64,000 cuentas nunca se leyeron</div>
+
+        <div class="paso">
+          <div class="paso-nom">
+            <div class="n1">Lecturas tomadas</div>
+            <div class="n2">761 por día</div>
+          </div>
+          <div class="paso-barra">
+            <div class="paso-relleno" style="width:25.0%;background:linear-gradient(90deg,#0284c7,#38bdf8)">21,300</div>
+          </div>
+          <div class="paso-pct"><div class="p1">25.0%</div><div class="p2">del padrón</div></div>
+        </div>
+
+        <div class="merma">↓ &nbsp;–19,700 lecturas no llegaron a facturación</div>
+
+        <div class="paso">
+          <div class="paso-nom">
+            <div class="n1">Avisos impresos</div>
+            <div class="n2">57 por día</div>
+          </div>
+          <div class="paso-barra">
+            <div class="paso-relleno" style="width:1.9%;background:linear-gradient(90deg,#dc2626,#ef4444);min-width:64px">1,600</div>
+          </div>
+          <div class="paso-pct"><div class="p1 c-rojo">1.9%</div><div class="p2">del padrón</div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-tit">Composición del padrón</div>
+      <div class="panel-sub">Estado de lectura al corte</div>
+
+      <div class="prop">
+        <div style="width:25.0%;background:linear-gradient(135deg,#0284c7,#0ea5e9)">25.0%</div>
+        <div style="width:75.0%;background:linear-gradient(135deg,#dc2626,#ef4444)">75.0%</div>
+      </div>
+      <div class="prop-leyenda">
+        <span><i class="cuadro" style="background:#0ea5e9"></i> Leídas · 21,300</span>
+        <span><i class="cuadro" style="background:#ef4444"></i> Faltantes · 64,000</span>
+      </div>
+
+      <div style="margin-top:26px">
+        <div class="panel-tit">Cobertura de facturación</div>
+        <div class="prop" style="height:34px">
+          <div style="width:1.9%;background:#dc2626;min-width:48px">1.9%</div>
+          <div style="width:98.1%;background:#e2e8f0;color:#64748b">98.1% pendiente</div>
+        </div>
+        <div class="prop-leyenda">
+          <span><i class="cuadro" style="background:#dc2626"></i> Impresos · 1,600</span>
+          <span><i class="cuadro" style="background:#e2e8f0"></i> Pendientes · 83,700</span>
+        </div>
+      </div>
+
+      <div class="nota">
+        La meta institucional es <b>95%</b> de cobertura de lectura y <b>98%</b> de avisos emitidos.
+        Hoy la brecha es de <b>59,735</b> lecturas y <b>82,000</b> avisos.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pie-pagina">
+    Generado el 28/08/2026 · Próxima actualización: 04/09/2026 · Fuente: sistema comercial, corte al 28/08/2026
+  </div>
+
+</div>
+
+
+</body>
+</html>

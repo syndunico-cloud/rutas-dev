@@ -1,0 +1,33 @@
+name: Generar Dashboard
+
+on:
+  push:
+    paths:
+      - 'input/**'
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * 1'  # Lunes 8:00 AM UTC
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Generar dashboard
+        run: python scripts/procesar.py
+
+      - name: Desplegar en GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
