@@ -253,12 +253,12 @@ body{
         <div class="paso">
           <div class="paso-nom">
             <div class="n1">Lecturas tomadas</div>
-            <div class="n2">788 por día</div>
+            <div class="n2"></div>
           </div>
           <div class="paso-barra">
-            <div class="paso-relleno" style="width:26.1%;background:linear-gradient(90deg,#0284c7,#38bdf8)">22,300</div>
+            <div class="paso-relleno" id="paso-lectura-val" style="width:27%;background:linear-gradient(90deg,#0284c7,#38bdf8)">23,050</div>
           </div>
-          <div class="paso-pct"><div class="p1">26.1%</div><div class="p2">del padrón</div></div>
+          <div class="paso-pct"><div class="p1" id="paso-lectura-pct">27%</div><div class="p2">del padrón</div></div>
         </div>
 
         <div class="merma">↓ &nbsp;–19,700 lecturas</div>
@@ -282,12 +282,12 @@ body{
       <div class="panel-sub">Estado de lectura al corte</div>
 
       <div class="prop">
-        <div style="width:26.1%;background:linear-gradient(135deg,#0284c7,#0ea5e9)">26.1%</div>
-        <div style="width:73.9%;background:linear-gradient(135deg,#dc2626,#ef4444)">73.9%</div>
+        <div id="comp-leidas-pct" style="width:27%;background:linear-gradient(135deg,#0284c7,#0ea5e9)">27%</div>
+        <div id="comp-faltantes-pct" style="width:73%;background:linear-gradient(135deg,#dc2626,#ef4444)">73%</div>
       </div>
       <div class="prop-leyenda">
-        <span><i class="cuadro" style="background:#0ea5e9"></i> Leídas · 22,300</span>
-        <span><i class="cuadro" style="background:#ef4444"></i> Faltantes · 63,000</span>
+        <span><i class="cuadro" style="background:#0ea5e9"></i> Leídas · <span id="comp-leidas-val">23,050</span></span>
+        <span><i class="cuadro" style="background:#ef4444"></i> Faltantes · <span id="comp-faltantes-val">62,250</span></span>
       </div>
 
       <div style="margin-top:26px">
@@ -324,17 +324,40 @@ body{
 
 <script>
 const PADRON_TOTAL = 85300;
-function actualizarLecturasSinFacturar() {
+
+function actualizarValoresDinamicos() {
   const lecFaltantesEl = document.getElementById('lec-faltantes');
   const lecSinFacturarEl = document.getElementById('lec-sin-facturar');
-  if (lecFaltantesEl && lecSinFacturarEl) {
+  const pasoLecturaVal = document.getElementById('paso-lectura-val');
+  const pasoLecturaPct = document.getElementById('paso-lectura-pct');
+  const compLeidasVal = document.getElementById('comp-leidas-val');
+  const compLeidasPct = document.getElementById('comp-leidas-pct');
+  const compFaltantesVal = document.getElementById('comp-faltantes-val');
+  const compFaltantesPct = document.getElementById('comp-faltantes-pct');
+
+  if (lecFaltantesEl) {
     const faltantes = parseInt(lecFaltantesEl.textContent.replace(/,/g, ''));
     const sinFacturar = PADRON_TOTAL - faltantes;
-    lecSinFacturarEl.textContent = sinFacturar.toLocaleString('es-ES');
+    const pctFaltantes = (faltantes / PADRON_TOTAL * 100).toFixed(1);
+    const pctSinFacturar = (sinFacturar / PADRON_TOTAL * 100).toFixed(1);
+
+    if (lecSinFacturarEl) lecSinFacturarEl.textContent = sinFacturar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if (pasoLecturaVal) pasoLecturaVal.textContent = sinFacturar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if (pasoLecturaPct) pasoLecturaPct.textContent = pctSinFacturar + '%';
+    if (compLeidasVal) compLeidasVal.textContent = sinFacturar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if (compLeidasPct) compLeidasPct.textContent = pctSinFacturar + '%';
+    if (compFaltantesVal) compFaltantesVal.textContent = faltantes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if (compFaltantesPct) compFaltantesPct.textContent = pctFaltantes + '%';
+
+    if (pasoLecturaVal) pasoLecturaVal.parentElement.style.width = pctSinFacturar + '%';
+    if (compLeidasPct) compLeidasPct.style.width = pctSinFacturar + '%';
+    if (compFaltantesPct) compFaltantesPct.style.width = pctFaltantes + '%';
   }
 }
-actualizarLecturasSinFacturar();
-const observer = new MutationObserver(actualizarLecturasSinFacturar);
+
+actualizarValoresDinamicos();
+
+const observer = new MutationObserver(actualizarValoresDinamicos);
 const lecFaltantesEl = document.getElementById('lec-faltantes');
 if (lecFaltantesEl) {
   observer.observe(lecFaltantesEl, { childList: true, characterData: true, subtree: true });
