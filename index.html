@@ -316,7 +316,7 @@ body{
   </div>
 
   <div class="pie-pagina">
-    Generado el 28/08/2026 · Próxima actualización: 04/09/2026 · Fuente: sistema comercial, corte al 28/08/2026
+<span id="pie-pagina-fechas">Generado el 28/08/2026 · Próxima actualización: 29/08/2026 · Fuente: sistema comercial, corte al 28/08/2026</span>
   </div>
 
 </div>
@@ -366,6 +366,23 @@ function actualizarValoresDinamicos() {
 }
 
 actualizarValoresDinamicos();
+
+// Actualizar fechas en pie de página - HOY
+const hoy = new Date();
+const manana = new Date(hoy);
+manana.setDate(manana.getDate() + 1);
+
+const formatoFecha = (fecha) => {
+  const dia = String(fecha.getDate()).padStart(2, '0');
+  const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+  const año = fecha.getFullYear();
+  return `${dia}/${mes}/${año}`;
+};
+
+const piePaginaEl = document.getElementById('pie-pagina-fechas');
+if (piePaginaEl) {
+  piePaginaEl.textContent = `Generado el ${formatoFecha(hoy)} · Próxima actualización: ${formatoFecha(manana)} · Fuente: sistema comercial, corte al ${formatoFecha(hoy)}`;
+}
 
 const observer = new MutationObserver(actualizarValoresDinamicos);
 const lecFaltantesEl = document.getElementById('lec-faltantes');
