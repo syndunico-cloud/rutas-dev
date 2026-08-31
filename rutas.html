@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribución de Rutas - 4to Bimestre 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #075985;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+            --surface: #fff;
+            --border: #e2e8f0;
+            --text: #1e293b;
+            --text-light: #64748b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            color: white;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            color: white;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumb a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
+        }
+
+        .stat-card .label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .stat-card .value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .stat-card .subtext {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .stat-card.danger .value {
+            color: var(--danger);
+        }
+
+        .stat-card.accent .value {
+            color: var(--accent);
+        }
+
+        .section {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            color: var(--text);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 12px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 30px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--bg);
+            border-bottom: 2px solid var(--border);
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        td {
+            border-bottom: 1px solid var(--border);
+            padding: 12px;
+        }
+
+        tr:hover {
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        .rank {
+            color: var(--primary);
+            font-weight: 700;
+            width: 40px;
+        }
+
+        .ruta-name {
+            font-weight: 500;
+        }
+
+        .cuentas {
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--primary-dark);
+        }
+
+        .badge.critical {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .badge.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-container {
+                height: 300px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">← Dashboard Principal</a>
+        </div>
+
+        <header>
+            <h1>Distribución de Rutas</h1>
+            <p>4to Bimestre 2026 · Julio – Agosto</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="label">Rutas Activas</div>
+                <div class="value">204</div>
+                <div class="subtext">Rutas con cuentas asignadas</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Cuentas Mapeadas</div>
+                <div class="value">66,197</div>
+                <div class="subtext">Del padrón de 85,300</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Distribución por Rango de Cuentas</h2>
+            <div class="chart-container">
+                <canvas id="bandas-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div class="section">
+                <h2>Top 15: Rutas con Más Cuentas</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="rank">#</th>
+                                <th>Ruta</th>
+                                <th class="cuentas">Cuentas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="top-rutas-tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Rutas Críticas (< 5 cuentas)</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="rank">#</th>
+                                <th>Ruta</th>
+                                <th class="cuentas">Cuentas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bottom-rutas-tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Composición de Rutas</h2>
+            <div class="two-column">
+                <div class="chart-container">
+                    <canvas id="composition-chart"></canvas>
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-weight: 600; margin-bottom: 8px; color: var(--primary);">77 rutas (37.7%)</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Pequeñas: 10-99 cuentas</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-weight: 600; margin-bottom: 8px; color: var(--accent);">70 rutas (34.3%)</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Medianas: 100-499 cuentas</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-weight: 600; margin-bottom: 8px;">8 rutas (3.9%)</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Grandes: 2000+ cuentas</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="font-weight: 600; margin-bottom: 8px;">49 rutas (24.0%)</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Otras (1-9, 500-1999)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Corte: 28/Ago/2026 | Período facturado: 01–28 Ago 2026</p>
+            <p><a href="index.html">← Volver al Dashboard Principal</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Datos
+        const data = {
+            bandas: {"2000+": 8, "1000-1999": 5, "500-999": 8, "100-499": 70, "10-99": 77, "1-9": 36},
+            topRutas: [["154 H HEROES TIZ...", 6171], ["154 A HEROES TIZ...", 3742], ["218 A Fracc. Andal...", 3508],
+                       ["21 B FRACC ANDAL...", 2862], ["027  FRACC. FUENT...", 2769], ["144  BOSQUES DEI...", 2444],
+                       ["15 B PASEOS PEDRE...", 2437], ["191  FRACC. CD.N...", 2259], ["154 I HEROES TIZA...", 1720],
+                       ["154  HEROES TIZAY...", 1615], ["154 F HEROES TIZ...", 1603], ["171  FRACC. HACIE...", 1255],
+                       ["241  FRACC. CD.N...", 1225], ["154 C HEROES TIZ...", 737], ["09 B RDA-2S-R2", 704]],
+            bottomRutas: [["002  AMPL. LAZARO...", 2], ["037  GEOVILLAS", 1], ["231  COL. LOS LAG...", 1],
+                          ["197  COL. LA ESCO...", 1], ["164 A AMP, NUEVA...", 1], ["072  TEPEYAC-NO U...", 1],
+                          ["043 A HIDALGO", 1], ["13 B HDT-7SR1", 1], ["033  FRACC. SANA...", 1],
+                          ["24 B PRIV RENACI...", 1], ["21 B CARLOS H ALV...", 1], ["017 A LOS PINOSE...", 1],
+                          ["16 B NOPALERA", 1], ["012  EJERCITO MEX...", 1], ["245  ARBOLEDAS EL...", 1]]
+        };
+
+        const colors = {
+            primary: '#0ea5e9',
+            primaryDark: '#075985',
+            accent: '#f59e0b',
+            danger: '#ef4444',
+            bg: '#f8fafc'
+        };
+
+        // Gráfica de bandas
+        const bandas = data.bandas;
+        const bandas_labels = Object.keys(bandas);
+        const bandas_values = Object.values(bandas);
+
+        new Chart(document.getElementById('bandas-chart'), {
+            type: 'bar',
+            data: {
+                labels: bandas_labels,
+                datasets: [{
+                    label: 'Número de Rutas',
+                    data: bandas_values,
+                    backgroundColor: [colors.primary, colors.primaryDark, colors.accent, '#60a5fa', '#34d399', '#ec4899'],
+                    borderRadius: 8,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                indexAxis: 'x',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 80,
+                        ticks: { color: '#64748b' },
+                        grid: { color: '#e2e8f0', drawBorder: false }
+                    },
+                    x: {
+                        ticks: { color: '#64748b' },
+                        grid: { display: false, drawBorder: false }
+                    }
+                }
+            }
+        });
+
+        // Gráfica de composición
+        const compositionLabels = ['10-99', '100-499', '2000+', 'Otras'];
+        const compositionData = [77, 70, 8, 49];
+        const compositionColors = ['#60a5fa', colors.accent, colors.primary, '#cbd5e1'];
+
+        new Chart(document.getElementById('composition-chart'), {
+            type: 'doughnut',
+            data: {
+                labels: compositionLabels,
+                datasets: [{
+                    data: compositionData,
+                    backgroundColor: compositionColors,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#1e293b', padding: 15, font: { size: 13 } }
+                    }
+                }
+            }
+        });
+
+        // Llenar tabla de top rutas
+        const topTbody = document.getElementById('top-rutas-tbody');
+        data.topRutas.forEach((ruta, i) => {
+            const row = topTbody.insertRow();
+            row.innerHTML = `
+                <td class="rank">${i + 1}</td>
+                <td class="ruta-name">${ruta[0]}</td>
+                <td class="cuentas">${ruta[1].toLocaleString()}</td>
+            `;
+        });
+
+        // Llenar tabla de rutas críticas
+        const bottomTbody = document.getElementById('bottom-rutas-tbody');
+        data.bottomRutas.forEach((ruta, i) => {
+            const row = bottomTbody.insertRow();
+            row.innerHTML = `
+                <td class="rank">${i + 1}</td>
+                <td class="ruta-name">${ruta[0]}</td>
+                <td class="cuentas"><span class="badge critical">${ruta[1]}</span></td>
+            `;
+        });
+    </script>
+</body>
+</html>
