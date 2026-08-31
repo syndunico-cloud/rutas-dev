@@ -208,7 +208,7 @@ body{
       <div class="cifra c-rojo" id="lec-faltantes">62,250</div>
       <div class="pie">73.9% del padrón sin lectura</div>
       <div class="delta d-mal">▼ 69 pts bajo la meta (95%)</div>
-      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> Último corte: 28/08/2026 | 14:10 [Sistema Comercial]</div>
+      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-corte-lec">Último corte: 31/08/2026 | 14:10 [Sistema Comercial]</span></div>
     </div>
 
     <div class="panel kpi">
@@ -382,6 +382,11 @@ const formatoFecha = (fecha) => {
 const piePaginaEl = document.getElementById('pie-pagina-fechas');
 if (piePaginaEl) {
   piePaginaEl.textContent = `Generado el ${formatoFecha(hoy)} · Próxima actualización: ${formatoFecha(manana)} · Fuente: sistema comercial, corte al ${formatoFecha(hoy)}`;
+}
+
+const ultimoCorteEl = document.getElementById('ultimo-corte-lec');
+if (ultimoCorteEl) {
+  ultimoCorteEl.textContent = `Último corte: ${formatoFecha(hoy)} | 14:10 [Sistema Comercial]`;
 }
 
 const observer = new MutationObserver(actualizarValoresDinamicos);
