@@ -341,11 +341,21 @@ function actualizarValoresDinamicos() {
     const pctFaltantes = (faltantes / PADRON_TOTAL * 100).toFixed(1);
     const pctSinFacturar = (sinFacturar / PADRON_TOTAL * 100).toFixed(1);
 
+    const colorGradiente = pctSinFacturar < 45
+      ? 'linear-gradient(90deg,#f59e0b,#f97316)'
+      : 'linear-gradient(90deg,#0284c7,#38bdf8)';
+
     if (lecSinFacturarEl) lecSinFacturarEl.textContent = sinFacturar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    if (pasoLecturaVal) pasoLecturaVal.textContent = sinFacturar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if (pasoLecturaVal) {
+      pasoLecturaVal.textContent = sinFacturar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      pasoLecturaVal.style.background = colorGradiente;
+    }
     if (pasoLecturaPct) pasoLecturaPct.textContent = pctSinFacturar + '%';
     if (compLeidasVal) compLeidasVal.textContent = sinFacturar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    if (compLeidasPct) compLeidasPct.textContent = pctSinFacturar + '%';
+    if (compLeidasPct) {
+      compLeidasPct.textContent = pctSinFacturar + '%';
+      compLeidasPct.style.background = colorGradiente;
+    }
     if (compFaltantesVal) compFaltantesVal.textContent = faltantes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     if (compFaltantesPct) compFaltantesPct.textContent = pctFaltantes + '%';
 
