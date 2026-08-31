@@ -194,21 +194,14 @@ body{
 <div class="lienzo">
 
   <!-- ============ KPIs PRINCIPALES ============ -->
-  <div class="fila f-4">
-
-    <div class="panel kpi">
-      <div class="panel-tit">Padrón activo</div>
-      <div class="cifra c-azul">85,300</div>
-      <div class="pie">Cuentas en 272 rutas</div>
-      <div class="delta d-bien">● Universo de referencia</div>
-    </div>
+  <div class="fila f-2">
 
     <div class="panel kpi">
       <div class="panel-tit">Lecturas faltantes</div>
-      <div class="cifra c-rojo" id="lec-faltantes">62,250</div>
-      <div class="pie">73.9% del padrón sin lectura</div>
-      <div class="delta d-mal">▼ 69 pts bajo la meta (95%)</div>
-      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-corte-lec">Último corte: 31/08/2026 | 14:10 [Sistema Comercial]</span></div>
+      <div class="cifra c-rojo" id="lec-faltantes">62,175</div>
+      <div class="pie">72.9% del padrón sin lectura</div>
+      <div class="delta d-mal">▼ 70 pts bajo la meta (95%)</div>
+      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-corte-lec">Último corte: 31/08/2026 | 15:40 [Sistema Comercial]</span></div>
     </div>
 
     <div class="panel kpi">
@@ -220,13 +213,41 @@ body{
       <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-reproceso">Último reproceso: 31/08/2026 | 10:38 [Sistema Comercial]</span></div>
     </div>
 
-    <div class="panel kpi">
-      <div class="panel-tit">Lecturas sin facturar</div>
-      <div class="cifra c-ambar" id="lec-sin-facturar">23,050</div>
-      <div class="pie"></div>
-      <div class="delta d-alerta">▲ Recuperable de inmediato</div>
-    </div>
+  </div>
 
+  <!-- ============ COMPOSICIÓN AL LADO ============ -->
+  <div class="fila f-2">
+    <div style="visibility:hidden"></div>
+    <div class="panel">
+      <div class="panel-tit">Composición del padrón</div>
+      <div class="panel-sub">Estado de lectura al corte</div>
+
+      <div class="prop">
+        <div id="comp-leidas-pct" style="width:27%;background:linear-gradient(135deg,#0284c7,#0ea5e9)">27%</div>
+        <div id="comp-faltantes-pct" style="width:73%;background:linear-gradient(135deg,#dc2626,#ef4444)">73%</div>
+      </div>
+      <div class="prop-leyenda">
+        <span><i class="cuadro" style="background:#0ea5e9"></i> Leídas · <span id="comp-leidas-val">23,050</span></span>
+        <span><i class="cuadro" style="background:#ef4444"></i> Faltantes · <span id="comp-faltantes-val">62,250</span></span>
+      </div>
+
+      <div style="margin-top:26px">
+        <div class="panel-tit">Cobertura de facturación</div>
+        <div class="prop" style="height:34px">
+          <div style="width:1.9%;background:#dc2626;min-width:48px">1.9%</div>
+          <div style="width:98.1%;background:#e2e8f0;color:#64748b">98.1% pendiente</div>
+        </div>
+        <div class="prop-leyenda">
+          <span><i class="cuadro" style="background:#dc2626"></i> Impresos · 1,600</span>
+          <span><i class="cuadro" style="background:#e2e8f0"></i> Pendientes · 83,700</span>
+        </div>
+      </div>
+
+      <div class="nota">
+        La meta institucional es <b>95%</b> de cobertura de lectura y <b>98%</b> de avisos emitidos.
+        Hoy la brecha es de <b>59,735</b> lecturas y <b>82,000</b> avisos.
+      </div>
+    </div>
   </div>
 
   <!-- ============ CADENA DE VALOR ============ -->
@@ -275,41 +296,18 @@ body{
     </div>
 
     <div class="panel">
-      <div class="panel-tit">Composición del padrón</div>
-      <div class="panel-sub">Estado de lectura al corte</div>
-
-      <div class="prop">
-        <div id="comp-leidas-pct" style="width:27%;background:linear-gradient(135deg,#0284c7,#0ea5e9)">27%</div>
-        <div id="comp-faltantes-pct" style="width:73%;background:linear-gradient(135deg,#dc2626,#ef4444)">73%</div>
-      </div>
-      <div class="prop-leyenda">
-        <span><i class="cuadro" style="background:#0ea5e9"></i> Leídas · <span id="comp-leidas-val">23,050</span></span>
-        <span><i class="cuadro" style="background:#ef4444"></i> Faltantes · <span id="comp-faltantes-val">62,250</span></span>
-      </div>
-
-      <div style="margin-top:26px">
-        <div class="panel-tit">Cobertura de facturación</div>
-        <div class="prop" style="height:34px">
-          <div style="width:1.9%;background:#dc2626;min-width:48px">1.9%</div>
-          <div style="width:98.1%;background:#e2e8f0;color:#64748b">98.1% pendiente</div>
-        </div>
-        <div class="prop-leyenda">
-          <span><i class="cuadro" style="background:#dc2626"></i> Impresos · 1,600</span>
-          <span><i class="cuadro" style="background:#e2e8f0"></i> Pendientes · 83,700</span>
-        </div>
-      </div>
-
-      <div class="nota">
-        La meta institucional es <b>95%</b> de cobertura de lectura y <b>98%</b> de avisos emitidos.
-        Hoy la brecha es de <b>59,735</b> lecturas y <b>82,000</b> avisos.
-      </div>
+      <div class="panel-tit">⚠️ Distribución de Bloques Faltantes</div>
+      <div class="panel-sub">15 bloques de cuentas [Ordenadas de Mayor a Menor]</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:12px;margin-top:16px" id="bloques-grid-dashboard"></div>
     </div>
 
   </div>
 
   <div style="text-align:center;margin-top:40px;padding:20px;background:var(--panel);border-radius:10px;border:1px solid var(--linea)">
     <div class="panel-tit" style="margin-bottom:16px">Análisis Detallado</div>
-    <a href="rutas.html" style="display:inline-block;background:linear-gradient(100deg,#075985 0%,#0284c7 55%,#0ea5e9 100%);color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">📍 Distribución de Rutas</a>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="rutas.html" style="display:inline-block;background:linear-gradient(100deg,#075985 0%,#0284c7 55%,#0ea5e9 100%);color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">📍 Distribución de Rutas</a>
+    </div>
   </div>
 
   <div class="pie-pagina">
@@ -361,6 +359,72 @@ function actualizarValoresDinamicos() {
     if (compFaltantesPct) compFaltantesPct.style.width = pctFaltantes + '%';
   }
 }
+
+// Convertir número a romano
+function aRomano(num) {
+  const romanNumerals = [
+    { value: 1000, numeral: 'M' },
+    { value: 900, numeral: 'CM' },
+    { value: 500, numeral: 'D' },
+    { value: 400, numeral: 'CD' },
+    { value: 100, numeral: 'C' },
+    { value: 90, numeral: 'XC' },
+    { value: 50, numeral: 'L' },
+    { value: 40, numeral: 'XL' },
+    { value: 10, numeral: 'X' },
+    { value: 9, numeral: 'IX' },
+    { value: 5, numeral: 'V' },
+    { value: 4, numeral: 'IV' },
+    { value: 1, numeral: 'I' }
+  ];
+  let result = '';
+  for (let i = 0; i < romanNumerals.length; i++) {
+    while (num >= romanNumerals[i].value) {
+      result += romanNumerals[i].numeral;
+      num -= romanNumerals[i].value;
+    }
+  }
+  return result;
+}
+
+// Mapear nombres españoles a números
+const nombreANumero = {
+  'UNO': 1, 'DOS': 2, 'TRES': 3, 'CUARTO': 4, 'QUINTO': 5,
+  'SEXTO': 6, 'SEPTIMO': 7, 'OCTAVO': 8, 'NOVENO': 9, 'DECIMO': 10,
+  'DECIMO PRIMERO': 11, 'DECIMO SEGUNDO': 12, 'DECIMO TERCERO': 13,
+  'DECIMO CUARTO': 14, 'DECIMO QUINTO': 15
+};
+
+// Llenar grid de bloques
+const bloques = [
+  { nombre: 'DOS', cuentas: 18975, num: 2 },
+  { nombre: 'DECIMO PRIMERO', cuentas: 9874, num: 11 },
+  { nombre: 'DECIMO SEGUNDO', cuentas: 7830, num: 12 },
+  { nombre: 'DECIMO QUINTO', cuentas: 5274, num: 15 },
+  { nombre: 'DECIMO', cuentas: 5015, num: 10 },
+  { nombre: 'NOVENO', cuentas: 4893, num: 9 },
+  { nombre: 'OCTAVO', cuentas: 4245, num: 8 },
+  { nombre: 'UNO', cuentas: 3620, num: 1 },
+  { nombre: 'SEPTIMO', cuentas: 1703, num: 7 },
+  { nombre: 'DECIMO TERCERO', cuentas: 562, num: 13 },
+  { nombre: 'QUINTO', cuentas: 119, num: 5 },
+  { nombre: 'SEXTO', cuentas: 36, num: 6 },
+  { nombre: 'CUARTO', cuentas: 18, num: 4 },
+  { nombre: 'DECIMO CUARTO', cuentas: 8, num: 14 },
+  { nombre: 'TRES', cuentas: 3, num: 3 }
+].sort((a, b) => b.cuentas - a.cuentas);
+
+const colors = ['#0ea5e9', '#f59e0b', '#ef4444', '#10b981', '#8b5cf6', '#06b6d4', '#ec4899', '#f97316', '#6366f1', '#14b8a6', '#f43f5e', '#a855f7', '#3b82f6', '#84cc16', '#0d9488'];
+const bloqGrid = document.getElementById('bloques-grid-dashboard');
+
+bloques.forEach((bloque, i) => {
+  const box = document.createElement('div');
+  box.style.cssText = `background:${colors[bloque.num - 1]};color:white;border-radius:8px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:1;font-weight:600;font-size:11px;cursor:pointer;transition:transform 0.2s`;
+  box.onmouseover = () => box.style.transform = 'scale(1.05)';
+  box.onmouseout = () => box.style.transform = 'scale(1)';
+  box.innerHTML = `<div style="font-size:13px;margin-bottom:6px;font-weight:700">Bloque</div><div style="font-size:12px;font-weight:600">${bloque.cuentas.toLocaleString()}</div>`;
+  bloqGrid.appendChild(box);
+});
 
 actualizarValoresDinamicos();
 
