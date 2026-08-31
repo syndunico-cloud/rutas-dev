@@ -214,9 +214,10 @@ body{
     <div class="panel kpi">
       <div class="panel-tit">Avisos impresos</div>
       <div class="cifra c-rojo">1,600</div>
+      <div style="font-size:9px;color:var(--gris-claro);margin-top:4px">Reproceso 1 al 31 Agosto</div>
       <div class="pie"></div>
       <div class="delta d-mal">▼ 96 pts bajo la meta (98%)</div>
-      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> Último reproceso: 28/08/2026 | 10:38 [Sistema Comercial]</div>
+      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-reproceso">Último reproceso: 31/08/2026 | 10:38 [Sistema Comercial]</span></div>
     </div>
 
     <div class="panel kpi">
@@ -383,6 +384,11 @@ if (piePaginaEl) {
 const ultimoCorteEl = document.getElementById('ultimo-corte-lec');
 if (ultimoCorteEl) {
   ultimoCorteEl.textContent = `Último corte: ${formatoFecha(hoy)} | 14:10 [Sistema Comercial]`;
+}
+
+const ultimoReprocesoEl = document.getElementById('ultimo-reproceso');
+if (ultimoReprocesoEl) {
+  ultimoReprocesoEl.textContent = `Último reproceso: ${formatoFecha(hoy)} | 10:38 [Sistema Comercial]`;
 }
 
 const observer = new MutationObserver(actualizarValoresDinamicos);
