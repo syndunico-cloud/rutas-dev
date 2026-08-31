@@ -62,6 +62,11 @@ body{
   70%{box-shadow:0 0 0 10px rgba(255,255,255,0)}
   100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}
 }
+@keyframes pulso-verde{
+  0%{box-shadow:0 0 0 0 rgba(16,185,129,.6)}
+  70%{box-shadow:0 0 0 8px rgba(16,185,129,0)}
+  100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}
+}
 
 .lienzo{max-width:1500px;margin:0 auto;padding:26px 40px 50px}
 
@@ -182,10 +187,6 @@ body{
       <div class="lbl">Corte</div>
       <div class="val">31 / Ago / 2026</div>
     </div>
-    <div class="meta-item">
-      <div class="lbl">Periodo facturado</div>
-      <div class="val">01 – 28 Ago 2026</div>
-    </div>
     <div class="estado-chip"><span class="punto"></span> ESTADO CRÍTICO</div>
   </div>
 </div>
@@ -204,9 +205,10 @@ body{
 
     <div class="panel kpi">
       <div class="panel-tit">Lecturas faltantes</div>
-      <div class="cifra c-rojo">63,000</div>
+      <div class="cifra c-rojo">62,250</div>
       <div class="pie">73.9% del padrón sin lectura</div>
       <div class="delta d-mal">▼ 69 pts bajo la meta (95%)</div>
+      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> Último corte: 28/08/2026 | 14:10 [Sistema Comercial]</div>
     </div>
 
     <div class="panel kpi">
@@ -214,6 +216,7 @@ body{
       <div class="cifra c-rojo">1,600</div>
       <div class="pie"></div>
       <div class="delta d-mal">▼ 96 pts bajo la meta (98%)</div>
+      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> Último reproceso: 28/08/2026 | 10:38 [Sistema Comercial]</div>
     </div>
 
     <div class="panel kpi">
