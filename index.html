@@ -198,10 +198,10 @@ body{
 
     <div class="panel kpi">
       <div class="panel-tit">Lecturas faltantes</div>
-      <div class="cifra c-rojo" id="lec-faltantes">62,175</div>
-      <div class="pie">72.9% del padrón sin lectura</div>
-      <div class="delta d-mal">▼ 70 pts bajo la meta (95%)</div>
-      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-corte-lec">Último corte: 31/08/2026 | 15:40 [Sistema Comercial]</span></div>
+      <div class="cifra c-rojo" id="lec-faltantes">62,025</div>
+      <div class="pie">72.7% del padrón sin lectura</div>
+      <div class="delta d-mal">▼ 72 pts bajo la meta (95%)</div>
+      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-corte-lec">Último corte: 01/09/2026 | 8:40 am [Sistema Comercial]</span></div>
     </div>
 
     <div class="panel kpi">
@@ -210,7 +210,7 @@ body{
       <div class="pie">Reproceso 1 al 31 Agosto</div>
       <div class="pie"></div>
       <div class="delta d-mal">▼ 96 pts bajo la meta (98%)</div>
-      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-reproceso">Último reproceso: 31/08/2026 | 10:38 [Sistema Comercial]</span></div>
+      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-reproceso">Último corte: 01/09/2026 | 08:40 [Sistema Comercial]</span></div>
     </div>
 
   </div>
@@ -301,13 +301,6 @@ body{
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:12px;margin-top:16px" id="bloques-grid-dashboard"></div>
     </div>
 
-  </div>
-
-  <div style="text-align:center;margin-top:40px;padding:20px;background:var(--panel);border-radius:10px;border:1px solid var(--linea)">
-    <div class="panel-tit" style="margin-bottom:16px">Análisis Detallado</div>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a href="rutas.html" style="display:inline-block;background:linear-gradient(100deg,#075985 0%,#0284c7 55%,#0ea5e9 100%);color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">📍 Distribución de Rutas</a>
-    </div>
   </div>
 
   <div class="pie-pagina">
@@ -447,7 +440,7 @@ if (piePaginaEl) {
 
 const ultimoCorteEl = document.getElementById('ultimo-corte-lec');
 if (ultimoCorteEl) {
-  ultimoCorteEl.textContent = `Último corte: ${formatoFecha(hoy)} | 14:10 [Sistema Comercial]`;
+  ultimoCorteEl.textContent = `Último corte: ${formatoFecha(hoy)} | 08:40 [Sistema Comercial]`;
 }
 
 const ultimoReprocesoEl = document.getElementById('ultimo-reproceso');
