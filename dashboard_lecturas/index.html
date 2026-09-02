@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4to Bimestre 2026 · Julio – Agosto</title>
+<style>
+:root{
+  --azul:#0ea5e9;
+  --azul-fuerte:#0369a1;
+  --azul-suave:#e0f2fe;
+  --rojo:#ef4444;
+  --rojo-suave:#fee2e2;
+  --ambar:#f59e0b;
+  --ambar-suave:#fef3c7;
+  --verde:#10b981;
+  --verde-suave:#d1fae5;
+  --tinta:#0f172a;
+  --gris:#64748b;
+  --gris-claro:#94a3b8;
+  --linea:#e2e8f0;
+  --fondo:#f1f5f9;
+  --panel:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--fondo);
+  color:var(--tinta);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- ENCABEZADO ---------- */
+.barra{
+  background:linear-gradient(100deg,#075985 0%,#0284c7 55%,#0ea5e9 100%);
+  color:#fff;
+  padding:22px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+}
+.barra h1{font-size:21px;font-weight:600;letter-spacing:-.2px}
+.barra .sub{font-size:12px;opacity:.85;margin-top:3px}
+.barra-meta{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.meta-item{text-align:right}
+.meta-item .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.8px;opacity:.75}
+.meta-item .val{font-size:14px;font-weight:600;margin-top:2px}
+.estado-chip{
+  background:var(--rojo);
+  border:1px solid rgba(255,255,255,.45);
+  padding:8px 16px;border-radius:999px;
+  font-size:12px;font-weight:700;letter-spacing:.5px;
+  display:flex;align-items:center;gap:8px;
+  box-shadow:0 2px 8px rgba(185,28,28,.45);
+}
+.punto{width:9px;height:9px;border-radius:50%;background:#fff;
+  box-shadow:0 0 0 0 rgba(255,255,255,.7);animation:pulso 2s infinite}
+@keyframes pulso{
+  0%{box-shadow:0 0 0 0 rgba(255,255,255,.6)}
+  70%{box-shadow:0 0 0 10px rgba(255,255,255,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}
+}
+@keyframes pulso-verde{
+  0%{box-shadow:0 0 0 0 rgba(16,185,129,.6)}
+  70%{box-shadow:0 0 0 8px rgba(16,185,129,0)}
+  100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}
+}
+
+.lienzo{max-width:1500px;margin:0 auto;padding:26px 40px 50px}
+
+/* ---------- MENSAJE EJECUTIVO ---------- */
+.titular{
+  background:var(--panel);
+  border-left:5px solid var(--rojo);
+  border-radius:10px;
+  padding:22px 26px;
+  margin-bottom:24px;
+  box-shadow:0 1px 3px rgba(15,23,42,.06);
+  display:flex;gap:24px;align-items:center;flex-wrap:wrap;
+}
+.titular-texto{flex:1;min-width:280px}
+.titular-etq{
+  font-size:10px;font-weight:700;letter-spacing:1.2px;
+  color:var(--rojo);text-transform:uppercase;margin-bottom:8px;
+}
+.titular h2{font-size:18px;font-weight:600;line-height:1.45;letter-spacing:-.2px}
+.titular h2 b{color:var(--rojo)}
+.titular-cifra{
+  text-align:center;padding-left:24px;border-left:1px solid var(--linea);min-width:150px;
+}
+.titular-cifra .n{font-size:38px;font-weight:700;color:var(--rojo);line-height:1}
+.titular-cifra .t{font-size:11px;color:var(--gris);margin-top:6px}
+
+/* ---------- REJILLA ---------- */
+.fila{display:grid;gap:18px;margin-bottom:24px}
+.f-2{grid-template-columns:repeat(2,1fr)}
+.f-4{grid-template-columns:repeat(4,1fr)}
+.f-2-1{grid-template-columns:2fr 1fr}
+
+.panel{
+  background:var(--panel);
+  border-radius:10px;
+  padding:22px 24px;
+  box-shadow:0 1px 3px rgba(15,23,42,.06);
+  border:1px solid var(--linea);
+}
+.panel-tit{
+  font-size:11px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;
+  color:var(--gris);margin-bottom:4px;
+}
+.panel-sub{font-size:11px;color:var(--gris-claro);margin-bottom:16px}
+
+/* ---------- TARJETA KPI ---------- */
+.kpi .cifra{font-size:34px;font-weight:700;letter-spacing:-1px;line-height:1;margin:10px 0 6px}
+.kpi .pie{font-size:12px;color:var(--gris)}
+.c-azul{color:var(--azul-fuerte)}
+.c-rojo{color:var(--rojo)}
+.c-ambar{color:var(--ambar)}
+
+.delta{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px;margin-top:12px;
+}
+.d-mal{background:var(--rojo-suave);color:#b91c1c}
+.d-alerta{background:var(--ambar-suave);color:#b45309}
+.d-bien{background:var(--verde-suave);color:#047857}
+
+/* ---------- BARRA DE PROPORCIÓN ---------- */
+.prop{display:flex;height:34px;border-radius:7px;overflow:hidden;margin:14px 0 10px}
+.prop div{display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:11px;font-weight:700}
+.prop-leyenda{display:flex;justify-content:space-between;font-size:11px;color:var(--gris)}
+.prop-leyenda span{display:flex;align-items:center;gap:6px}
+.cuadro{width:9px;height:9px;border-radius:2px}
+
+/* ---------- CADENA / EMBUDO ---------- */
+.cadena{display:flex;flex-direction:column;gap:14px;margin-top:18px}
+.paso{display:flex;align-items:center;gap:16px}
+.paso-nom{width:190px;flex-shrink:0}
+.paso-nom .n1{font-size:13px;font-weight:600}
+.paso-nom .n2{font-size:11px;color:var(--gris-claro);margin-top:2px}
+.paso-barra{flex:1;height:40px;background:#f1f5f9;border-radius:7px;overflow:hidden;position:relative}
+.paso-relleno{height:100%;border-radius:7px;display:flex;align-items:center;padding-left:14px;
+  color:#fff;font-size:15px;font-weight:700;min-width:70px;transition:width .6s ease}
+.paso-pct{width:96px;text-align:right;flex-shrink:0}
+.paso-pct .p1{font-size:17px;font-weight:700}
+.paso-pct .p2{font-size:10px;color:var(--gris-claro)}
+.merma{
+  display:flex;align-items:center;gap:8px;
+  margin-left:206px;font-size:11px;color:var(--rojo);font-weight:600;
+  padding:3px 0;
+}
+
+/* ---------- NOTA AL PIE DEL PANEL ---------- */
+.nota{font-size:11px;color:var(--gris);line-height:1.55;margin-top:10px;
+  padding-top:12px;border-top:1px dashed var(--linea)}
+
+.pie-pagina{
+  text-align:center;font-size:11px;color:var(--gris-claro);
+  margin-top:34px;padding-top:18px;border-top:1px solid var(--linea);
+}
+
+
+@media (max-width:1180px){
+  .f-4,.f-2-1{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .barra{padding:18px 20px}
+  .lienzo{padding:20px}
+  .f-4,.f-2-1{grid-template-columns:1fr}
+  .paso-nom{width:120px}
+  .merma{margin-left:136px}
+  .titular-cifra{border-left:none;padding-left:0;border-top:1px solid var(--linea);padding-top:16px;text-align:left}
+}
+</style>
+</head>
+<body>
+
+<div class="barra">
+  <div>
+    <h1>4to Bimestre 2026 · Julio – Agosto</h1>
+    <div class="sub">Organismo Operador de Agua · 10 zonas · 272 rutas</div>
+  </div>
+  <div class="barra-meta">
+    <div class="meta-item">
+      <div class="lbl">Corte</div>
+      <div class="val">01/09/2026</div>
+    </div>
+    <div class="estado-chip"><span class="punto"></span> ESTADO CRÍTICO</div>
+  </div>
+</div>
+
+<div class="lienzo">
+
+  <!-- ============ KPIs PRINCIPALES ============ -->
+  <div class="fila f-2">
+
+    <div class="panel kpi">
+      <div class="panel-tit">Lecturas faltantes</div>
+      <div class="cifra c-rojo" id="lec-faltantes">60,529</div>
+      <div class="pie">70.9% del padrón sin lectura</div>
+      <div class="delta d-mal">▼ 74 pts bajo la meta (95%)</div>
+      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-corte-lec">Último corte: 02/09/2026 | 11:16 [Sistema Comercial]</span></div>
+    </div>
+
+    <div class="panel kpi">
+      <div class="panel-tit">Avisos impresos</div>
+      <div class="cifra c-rojo">2,400</div>
+      <div class="pie">Reproceso 1 al 31 Agosto</div>
+      <div class="pie"></div>
+      <div class="delta d-mal">▼ 60 pts bajo la meta (98%)</div>
+      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-reproceso">Último reproceso: 01/09/2026 | 16:18 [Sistema Comercial]</span></div>
+    </div>
+
+  </div>
+
+  <!-- ============ COMPOSICIÓN AL LADO ============ -->
+  <div class="fila f-2">
+    <div style="visibility:hidden"></div>
+    <div class="panel">
+      <div class="panel-tit">Composición del padrón</div>
+      <div class="panel-sub">Estado de lectura al corte</div>
+
+      <div class="prop">
+        <div id="comp-leidas-pct" style="width:27%;background:linear-gradient(135deg,#0284c7,#0ea5e9)">27%</div>
+        <div id="comp-faltantes-pct" style="width:73%;background:linear-gradient(135deg,#dc2626,#ef4444)">73%</div>
+      </div>
+      <div class="prop-leyenda">
+        <span><i class="cuadro" style="background:#0ea5e9"></i> Leídas · <span id="comp-leidas-val">23,050</span></span>
+        <span><i class="cuadro" style="background:#ef4444"></i> Faltantes · <span id="comp-faltantes-val">62,250</span></span>
+      </div>
+
+      <div style="margin-top:26px">
+        <div class="panel-tit">Cobertura de facturación</div>
+        <div class="prop" style="height:34px">
+          <div style="width:2.8%;background:#dc2626;min-width:48px">2.8%</div>
+          <div style="width:97.2%;background:#e2e8f0;color:#64748b">97.2% pendiente</div>
+        </div>
+        <div class="prop-leyenda">
+          <span><i class="cuadro" style="background:#dc2626"></i> Impresos · 2,400</span>
+          <span><i class="cuadro" style="background:#e2e8f0"></i> Pendientes · 82,900</span>
+        </div>
+      </div>
+
+      <div class="nota">
+        La meta institucional es <b>95%</b> de cobertura de lectura y <b>98%</b> de avisos emitidos.
+        Hoy la brecha es de <b>56,214</b> lecturas y <b>81,194</b> avisos.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CADENA DE VALOR ============ -->
+  <div class="fila f-2-1">
+
+    <div class="panel">
+      <div class="panel-tit">Indicador de avance [Sistema comercial]</div>
+      <div class="panel-sub">Toma de lectura → Carga al sistema → Impresión del aviso</div>
+
+      <div class="cadena">
+
+        <div class="paso">
+          <div class="paso-nom">
+            <div class="n1">Padrón activo</div>
+            <div class="n2">Cuentas por atender</div>
+          </div>
+          <div class="paso-barra">
+            <div class="paso-relleno" style="width:100%;background:linear-gradient(90deg,#0369a1,#0ea5e9)">85,300</div>
+          </div>
+          <div class="paso-pct"><div class="p1">100%</div><div class="p2">base</div></div>
+        </div>
+
+        <div class="paso">
+          <div class="paso-nom">
+            <div class="n1">Lecturas tomadas</div>
+            <div class="n2"></div>
+          </div>
+          <div class="paso-barra">
+            <div class="paso-relleno" id="paso-lectura-val" style="width:27%;background:linear-gradient(90deg,#0284c7,#38bdf8)">23,050</div>
+          </div>
+          <div class="paso-pct"><div class="p1" id="paso-lectura-pct">27%</div><div class="p2">del padrón</div></div>
+        </div>
+
+        <div class="paso">
+          <div class="paso-nom">
+            <div class="n1">Avisos impresos</div>
+            <div class="n2"></div>
+          </div>
+          <div class="paso-barra">
+            <div class="paso-relleno" style="width:2.8%;background:linear-gradient(90deg,#dc2626,#ef4444);min-width:64px">2,400</div>
+          </div>
+          <div class="paso-pct"><div class="p1 c-rojo">2.8%</div><div class="p2">del padrón</div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-tit">⚠️ Distribución de Bloques Faltantes</div>
+      <div class="panel-sub">15 bloques de cuentas [Ordenadas de Mayor a Menor]</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:12px;margin-top:16px" id="bloques-grid-dashboard"></div>
+    </div>
+
+  </div>
+
+  <div class="pie-pagina">
+<span id="pie-pagina-fechas">Generado el 28/08/2026 · Próxima actualización: 29/08/2026 · Fuente: sistema comercial, corte al 28/08/2026</span>
+  </div>
+
+</div>
+
+
+<script>
+const PADRON_TOTAL = 85300;
+
+function actualizarValoresDinamicos() {
+  const lecFaltantesEl = document.getElementById('lec-faltantes');
+  const lecSinFacturarEl = document.getElementById('lec-sin-facturar');
+  const pasoLecturaVal = document.getElementById('paso-lectura-val');
+  const pasoLecturaPct = document.getElementById('paso-lectura-pct');
+  const compLeidasVal = document.getElementById('comp-leidas-val');
+  const compLeidasPct = document.getElementById('comp-leidas-pct');
+  const compFaltantesVal = document.getElementById('comp-faltantes-val');
+  const compFaltantesPct = document.getElementById('comp-faltantes-pct');
+
+  if (lecFaltantesEl) {
+    const faltantes = parseInt(lecFaltantesEl.textContent.replace(/,/g, ''));
+    const sinFacturar = PADRON_TOTAL - faltantes;
+    const pctFaltantes = (faltantes / PADRON_TOTAL * 100).toFixed(1);
+    const pctSinFacturar = (sinFacturar / PADRON_TOTAL * 100).toFixed(1);
+
+    const colorGradiente = pctSinFacturar < 45
+      ? 'linear-gradient(90deg,#f59e0b,#f97316)'
+      : 'linear-gradient(90deg,#0284c7,#38bdf8)';
+
+    if (lecSinFacturarEl) lecSinFacturarEl.textContent = sinFacturar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if (pasoLecturaVal) {
+      pasoLecturaVal.textContent = sinFacturar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      pasoLecturaVal.style.background = colorGradiente;
+    }
+    if (pasoLecturaPct) pasoLecturaPct.textContent = pctSinFacturar + '%';
+    if (compLeidasVal) compLeidasVal.textContent = sinFacturar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if (compLeidasPct) {
+      compLeidasPct.textContent = pctSinFacturar + '%';
+      compLeidasPct.style.background = colorGradiente;
+    }
+    if (compFaltantesVal) compFaltantesVal.textContent = faltantes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if (compFaltantesPct) compFaltantesPct.textContent = pctFaltantes + '%';
+
+    if (pasoLecturaVal) pasoLecturaVal.parentElement.style.width = pctSinFacturar + '%';
+    if (compLeidasPct) compLeidasPct.style.width = pctSinFacturar + '%';
+    if (compFaltantesPct) compFaltantesPct.style.width = pctFaltantes + '%';
+  }
+}
+
+// Convertir número a romano
+function aRomano(num) {
+  const romanNumerals = [
+    { value: 1000, numeral: 'M' },
+    { value: 900, numeral: 'CM' },
+    { value: 500, numeral: 'D' },
+    { value: 400, numeral: 'CD' },
+    { value: 100, numeral: 'C' },
+    { value: 90, numeral: 'XC' },
+    { value: 50, numeral: 'L' },
+    { value: 40, numeral: 'XL' },
+    { value: 10, numeral: 'X' },
+    { value: 9, numeral: 'IX' },
+    { value: 5, numeral: 'V' },
+    { value: 4, numeral: 'IV' },
+    { value: 1, numeral: 'I' }
+  ];
+  let result = '';
+  for (let i = 0; i < romanNumerals.length; i++) {
+    while (num >= romanNumerals[i].value) {
+      result += romanNumerals[i].numeral;
+      num -= romanNumerals[i].value;
+    }
+  }
+  return result;
+}
+
+// Mapear nombres españoles a números
+const nombreANumero = {
+  'UNO': 1, 'DOS': 2, 'TRES': 3, 'CUARTO': 4, 'QUINTO': 5,
+  'SEXTO': 6, 'SEPTIMO': 7, 'OCTAVO': 8, 'NOVENO': 9, 'DECIMO': 10,
+  'DECIMO PRIMERO': 11, 'DECIMO SEGUNDO': 12, 'DECIMO TERCERO': 13,
+  'DECIMO CUARTO': 14, 'DECIMO QUINTO': 15
+};
+
+// Llenar grid de bloques
+const bloques = [
+  { nombre: 'DOS', cuentas: 18975, num: 2 },
+  { nombre: 'DECIMO PRIMERO', cuentas: 9874, num: 11 },
+  { nombre: 'DECIMO SEGUNDO', cuentas: 7830, num: 12 },
+  { nombre: 'DECIMO QUINTO', cuentas: 5274, num: 15 },
+  { nombre: 'DECIMO', cuentas: 5015, num: 10 },
+  { nombre: 'NOVENO', cuentas: 4893, num: 9 },
+  { nombre: 'OCTAVO', cuentas: 4245, num: 8 },
+  { nombre: 'UNO', cuentas: 3620, num: 1 },
+  { nombre: 'SEPTIMO', cuentas: 1703, num: 7 },
+  { nombre: 'DECIMO TERCERO', cuentas: 562, num: 13 },
+  { nombre: 'QUINTO', cuentas: 119, num: 5 },
+  { nombre: 'SEXTO', cuentas: 36, num: 6 },
+  { nombre: 'CUARTO', cuentas: 18, num: 4 },
+  { nombre: 'DECIMO CUARTO', cuentas: 8, num: 14 },
+  { nombre: 'TRES', cuentas: 3, num: 3 }
+].sort((a, b) => b.cuentas - a.cuentas);
+
+const colors = ['#0ea5e9', '#f59e0b', '#ef4444', '#10b981', '#8b5cf6', '#06b6d4', '#ec4899', '#f97316', '#6366f1', '#14b8a6', '#f43f5e', '#a855f7', '#3b82f6', '#84cc16', '#0d9488'];
+const bloqGrid = document.getElementById('bloques-grid-dashboard');
+
+bloques.forEach((bloque, i) => {
+  const box = document.createElement('div');
+  box.style.cssText = `background:${colors[bloque.num - 1]};color:white;border-radius:8px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:1;font-weight:600;font-size:11px;cursor:pointer;transition:transform 0.2s`;
+  box.onmouseover = () => box.style.transform = 'scale(1.05)';
+  box.onmouseout = () => box.style.transform = 'scale(1)';
+  box.innerHTML = `<div style="font-size:13px;margin-bottom:6px;font-weight:700">Bloque</div><div style="font-size:12px;font-weight:600">${bloque.cuentas.toLocaleString()}</div>`;
+  bloqGrid.appendChild(box);
+});
+
+actualizarValoresDinamicos();
+
+// Actualizar fechas en pie de página - HOY
+const hoy = new Date();
+const manana = new Date(hoy);
+manana.setDate(manana.getDate() + 1);
+
+const formatoFecha = (fecha) => {
+  const dia = String(fecha.getDate()).padStart(2, '0');
+  const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+  const año = fecha.getFullYear();
+  return `${dia}/${mes}/${año}`;
+};
+
+const piePaginaEl = document.getElementById('pie-pagina-fechas');
+if (piePaginaEl) {
+  piePaginaEl.textContent = `Generado el ${formatoFecha(hoy)} · Próxima actualización: ${formatoFecha(manana)} · Fuente: sistema comercial, corte al ${formatoFecha(hoy)}`;
+}
+
+const ultimoCorteEl = document.getElementById('ultimo-corte-lec');
+if (ultimoCorteEl) {
+  const fechaCorte = new Date(2026, 8, 2); // 02/09/2026
+  ultimoCorteEl.textContent = `Último corte: ${formatoFecha(fechaCorte)} | 11:16 [Sistema Comercial]`;
+}
+
+const ultimoReprocesoEl = document.getElementById('ultimo-reproceso');
+if (ultimoReprocesoEl) {
+  const fechaReproceso = new Date(2026, 8, 1); // 01/09/2026
+  ultimoReprocesoEl.textContent = `Último reproceso: ${formatoFecha(fechaReproceso)} | 16:18 [Sistema Comercial]`;
+}
+
+const observer = new MutationObserver(actualizarValoresDinamicos);
+const lecFaltantesEl = document.getElementById('lec-faltantes');
+if (lecFaltantesEl) {
+  observer.observe(lecFaltantesEl, { childList: true, characterData: true, subtree: true });
+}
+</script>
+
+</body>
+</html>
