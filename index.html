@@ -95,6 +95,7 @@ body{
 
 /* ---------- REJILLA ---------- */
 .fila{display:grid;gap:18px;margin-bottom:24px}
+.f-2{grid-template-columns:repeat(2,1fr)}
 .f-4{grid-template-columns:repeat(4,1fr)}
 .f-2-1{grid-template-columns:2fr 1fr}
 
@@ -185,7 +186,7 @@ body{
   <div class="barra-meta">
     <div class="meta-item">
       <div class="lbl">Corte</div>
-      <div class="val">01/09/2026</div>
+      <div class="val">02/09/2026</div>
     </div>
     <div class="estado-chip"><span class="punto"></span> ESTADO CRÍTICO</div>
   </div>
@@ -198,26 +199,25 @@ body{
 
     <div class="panel kpi">
       <div class="panel-tit">Lecturas faltantes</div>
-      <div class="cifra c-rojo" id="lec-faltantes">62,025</div>
-      <div class="pie">72.7% del padrón sin lectura</div>
-      <div class="delta d-mal">▼ 72 pts bajo la meta (95%)</div>
-      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-corte-lec">Último corte: 01/09/2026 | 8:40 am [Sistema Comercial]</span></div>
+      <div class="cifra c-rojo" id="lec-faltantes">60,487</div>
+      <div class="pie">71.0% del padrón sin lectura</div>
+      <div class="delta d-mal">▼ 65 pts bajo la meta (95%)</div>
+      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-corte-lec">Último corte: 02/09/2026 | 11:48 [Sistema Comercial]</span></div>
     </div>
 
     <div class="panel kpi">
       <div class="panel-tit">Avisos impresos</div>
-      <div class="cifra c-rojo">1,600</div>
+      <div class="cifra c-rojo">3,674</div>
       <div class="pie">Reproceso 1 al 31 Agosto</div>
       <div class="pie"></div>
-      <div class="delta d-mal">▼ 96 pts bajo la meta (98%)</div>
-      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-reproceso">Último corte: 01/09/2026 | 08:40 [Sistema Comercial]</span></div>
+      <div class="delta d-mal">▼ 93 pts bajo la meta (98%)</div>
+      <div style="font-size:10px;color:var(--gris-claro);margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;display:flex;align-items:center;gap:6px"><span class="punto" style="width:6px;height:6px;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:pulso-verde 2s infinite"></span> <span id="ultimo-reproceso">Último reproceso: 01/09/2026 | 16:18 [Sistema Comercial]</span></div>
     </div>
 
   </div>
 
   <!-- ============ COMPOSICIÓN AL LADO ============ -->
-  <div class="fila f-2">
-    <div style="visibility:hidden"></div>
+  <div class="fila" style="max-width:600px;margin-left:auto;margin-right:auto">
     <div class="panel">
       <div class="panel-tit">Composición del padrón</div>
       <div class="panel-sub">Estado de lectura al corte</div>
@@ -234,18 +234,18 @@ body{
       <div style="margin-top:26px">
         <div class="panel-tit">Cobertura de facturación</div>
         <div class="prop" style="height:34px">
-          <div style="width:1.9%;background:#dc2626;min-width:48px">1.9%</div>
-          <div style="width:98.1%;background:#e2e8f0;color:#64748b">98.1% pendiente</div>
+          <div style="width:4.7%;background:#dc2626;min-width:48px">4.7%</div>
+          <div style="width:95.3%;background:#e2e8f0;color:#64748b">95.3% pendiente</div>
         </div>
         <div class="prop-leyenda">
-          <span><i class="cuadro" style="background:#dc2626"></i> Impresos · 1,600</span>
-          <span><i class="cuadro" style="background:#e2e8f0"></i> Pendientes · 83,700</span>
+          <span><i class="cuadro" style="background:#dc2626"></i> Impresos · 3,674</span>
+          <span><i class="cuadro" style="background:#e2e8f0"></i> Pendientes · 81,626</span>
         </div>
       </div>
 
       <div class="nota">
         La meta institucional es <b>95%</b> de cobertura de lectura y <b>98%</b> de avisos emitidos.
-        Hoy la brecha es de <b>59,735</b> lecturas y <b>82,000</b> avisos.
+        Hoy la brecha es de <b>56,214</b> lecturas y <b>79,594</b> avisos.
       </div>
     </div>
   </div>
@@ -287,9 +287,9 @@ body{
             <div class="n2"></div>
           </div>
           <div class="paso-barra">
-            <div class="paso-relleno" style="width:1.9%;background:linear-gradient(90deg,#dc2626,#ef4444);min-width:64px">1,600</div>
+            <div class="paso-relleno" style="width:4.3%;background:linear-gradient(90deg,#dc2626,#ef4444);min-width:64px">3,674</div>
           </div>
-          <div class="paso-pct"><div class="p1 c-rojo">1.9%</div><div class="p2">del padrón</div></div>
+          <div class="paso-pct"><div class="p1 c-rojo">4.7%</div><div class="p2">del padrón</div></div>
         </div>
 
       </div>
@@ -440,13 +440,14 @@ if (piePaginaEl) {
 
 const ultimoCorteEl = document.getElementById('ultimo-corte-lec');
 if (ultimoCorteEl) {
-  ultimoCorteEl.textContent = `Último corte: ${formatoFecha(hoy)} | 08:40 [Sistema Comercial]`;
+  const fechaCorte = new Date(2026, 8, 2); // 02/09/2026
+  ultimoCorteEl.textContent = `Último corte: ${formatoFecha(fechaCorte)} | 11:16 [Sistema Comercial]`;
 }
 
 const ultimoReprocesoEl = document.getElementById('ultimo-reproceso');
 if (ultimoReprocesoEl) {
-  const fechaReproceso = new Date(2026, 7, 28); // 28/08/2026
-  ultimoReprocesoEl.textContent = `Último reproceso: ${formatoFecha(fechaReproceso)} | 10:38 [Sistema Comercial]`;
+  const fechaReproceso = new Date(2026, 8, 1); // 01/09/2026
+  ultimoReprocesoEl.textContent = `Último reproceso: ${formatoFecha(fechaReproceso)} | 16:18 [Sistema Comercial]`;
 }
 
 const observer = new MutationObserver(actualizarValoresDinamicos);
